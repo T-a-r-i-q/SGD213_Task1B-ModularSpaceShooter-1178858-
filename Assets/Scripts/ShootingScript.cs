@@ -1,19 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// This script is responsible for shooting bullets when the player presses the fire button
 public class ShootingScript : MonoBehaviour
 {
 
+    // The bullet prefab that we will spawn when we shoot, set this in the Editor with serializeField
     [SerializeField]
     private GameObject bullet;
 
+    // We will use this to make sure we don't shoot too many bullets at once
     private float lastFiredTime = 0f;
 
+    // How long we have to wait between shots, set this in the Editor with serializeField
     [SerializeField]
     private float fireDelay = 1f;
 
+    // This is how far in front of the player we will spawn the bullet, we will calculate this in Start()
     private float bulletOffset = 2f;
 
+    //initialize our variables
     void Start()
     {
         // Do some math to perfectly spawn bullets in front of us
@@ -21,35 +27,21 @@ public class ShootingScript : MonoBehaviour
             + bullet.GetComponent<Renderer>().bounds.size.y / 2; // Plus half of the bullet size
     }
 
-    // Update is called once per frame
-    void Update()
+    // This function is called by the PlayerInput script when we want to shoot
+    public void Shoot() 
     {
-        if (Input.GetButton("Fire1"))
+        // Get the current time
+        float CurrentTime = Time.time;
+
+        // Have a delay so we don't shoot too many bullets
+        if (CurrentTime - lastFiredTime > fireDelay)
         {
-            float CurrentTime = Time.time;
+            Vector2 spawnPosition = new Vector2(transform.position.x, transform.position.y + bulletOffset);
 
-            // Have a delay so we don't shoot too many bullets
-            if (CurrentTime - lastFiredTime > fireDelay)
-            {
-                Vector2 spawnPosition = new Vector2(transform.position.x, transform.position.y + bulletOffset);
+            Instantiate(bullet, spawnPosition, transform.rotation);
 
-                Instantiate(bullet, spawnPosition, transform.rotation);
-
-                lastFiredTime = CurrentTime;
-            }
-
-            //print("Shoot!");
+            lastFiredTime = CurrentTime;
         }
-    }
-
-    /// <summary>
-    /// SampleMethod is a sample of how to use abstraction by
-    /// specification. It converts a provided integer to a float.
-    /// </summary>
-    /// <param name="number">any integer</param>
-    /// <returns>the number parameter as a float</returns>
-    public float SampleMethod(int number) {
-        return number;
     }
 
 }
