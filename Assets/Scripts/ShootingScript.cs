@@ -27,7 +27,10 @@ public class ShootingScript : MonoBehaviour
             + bullet.GetComponent<Renderer>().bounds.size.y / 2; // Plus half of the bullet size
     }
 
-    // This function is called by the PlayerInput script when we want to shoot
+    /*
+    This function is called by the PlayerInput script when we want to shoot, 
+    it checks if we have shot recently and then spawns a bullet if we haven't
+    */
     public void Shoot() 
     {
         // Get the current time

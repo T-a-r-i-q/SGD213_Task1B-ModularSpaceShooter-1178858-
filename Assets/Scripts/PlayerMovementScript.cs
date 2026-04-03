@@ -1,17 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// This script is responsible for moving the player horizontally based on the input we get from the PlayerInputScript
 public class PlayerMovementScript : MonoBehaviour 
 {
     /*
     SerializeField exposes this value to the Editor, but not to other Scripts!
     It is "pseudo public"
-    HorizontalPlayerAcceleration indicates how fast we accelerate Horizontally
+    speed indicates how fast we accelerate Horizontally
     */
 
     [SerializeField]
     private float speed = 5000f;
 
+    // A reference to our Rigidbody2D component, which we will use to move our player
     private Rigidbody2D ourRigidBody;
 
     // Use this for initialization
@@ -26,6 +28,7 @@ public class PlayerMovementScript : MonoBehaviour
         ourRigidBody = GetComponent<Rigidbody2D>(); 
     }
 
+    //move the player horizontally based on the input we get from the PlayerInputScript
     public void MoveHorizontal(float HorizontalInput) 
     {
         Vector2 ForceToAdd=Vector2.right*HorizontalInput*speed*Time.deltaTime;
