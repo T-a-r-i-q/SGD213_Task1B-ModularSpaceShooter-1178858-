@@ -26,8 +26,8 @@ public class BulletMoveForward : MonoBehaviour {
     */
     void Update()
     {
-        Vector2 ForceToAdd = Vector2.up * acceleration * Time.deltaTime;
+        Vector2 forceToAdd = Vector2.up * acceleration * Time.deltaTime;
 
-        ourRigidbody.AddForce(ForceToAdd);
+        ourRigidbody.AddForce(forceToAdd);
     }
 }

@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/*
+This script is attached to the spawner game object. It spawns a given object at random positions 
+within the bounds of the spawner, and it does this repeatedly over time.
+*/
 public class SpawnOverTimeScript : MonoBehaviour
 {
 
@@ -12,6 +16,10 @@ public class SpawnOverTimeScript : MonoBehaviour
     [SerializeField]
     private float spawnDelay = 2f;
 
+    /*
+    A reference to the Renderer component of the spawner, 
+    which we will use to determine the bounds for spawning and to hide the spawner itself.
+    */
     private Renderer ourRenderer;
 
     // Use this for initialization
@@ -23,11 +31,14 @@ public class SpawnOverTimeScript : MonoBehaviour
         // Stop our Spawner from being visible!
         ourRenderer.enabled = false;
 
-        // Call the given function after spawnDelay seconds, 
-        // and then repeatedly call it after spawnDelay seconds.
+        /*
+        Call the given function after spawnDelay seconds, 
+        and then repeatedly call it after spawnDelay seconds.
+        */
         InvokeRepeating("Spawn", spawnDelay, spawnDelay);
     }
 
+    // This function is responsible for spawning the object at random positions within the bounds of the spawner.
     void Spawn()
     {
         float x1 = transform.position.x - ourRenderer.bounds.size.x / 2;
