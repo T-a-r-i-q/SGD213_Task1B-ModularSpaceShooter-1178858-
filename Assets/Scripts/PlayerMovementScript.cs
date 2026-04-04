@@ -29,9 +29,9 @@ public class PlayerMovementScript : MonoBehaviour
     }
 
     //move the player horizontally based on the input we get from the PlayerInputScript
-    public void MoveHorizontal(float HorizontalInput) 
+    public void MoveHorizontal(float horizontalInput) 
     {
-        Vector2 ForceToAdd=Vector2.right*HorizontalInput*speed*Time.deltaTime;
-        ourRigidBody.AddForce(ForceToAdd);
+        Vector2 forceToAdd=Vector2.right*horizontalInput*speed*Time.deltaTime;
+        ourRigidBody.AddForce(forceToAdd);
     }
 }

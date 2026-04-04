@@ -26,12 +26,12 @@ public class PlayerInput : MonoBehaviour
     void Update()
     {
         // Get the horizontal input axis (A/D keys or Left/Right arrow keys)
-        float HorizontalInput = Input.GetAxis("Horizontal");
+        float horizontalInput = Input.GetAxis("Horizontal");
 
         // If there is horizontal input, call the MoveHorizontal function in our PlayerMovementScript
-        if (HorizontalInput != 0.0f) 
+        if (horizontalInput != 0.0f) 
         {
-            playerMovementScript.MoveHorizontal(HorizontalInput);
+            playerMovementScript.MoveHorizontal(horizontalInput);
         }   
 
         /*
