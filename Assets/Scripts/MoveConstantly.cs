@@ -41,6 +41,7 @@ public class MoveConstantly : MonoBehaviour
 
     void Start()
     {
+        // get our Rigidbody2D component and set our initial velocity
         ourRigidbody = GetComponent<Rigidbody2D>();
 
         ourRigidbody.velocity = direction * initialVelocity;
