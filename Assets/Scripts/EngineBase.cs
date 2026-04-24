@@ -6,12 +6,12 @@ public class EngineBase : MonoBehaviour
 {
     // acceleration indicates how fast the enemy accelerates
     [SerializeField]
-    private float acceleration = 5000f;
+    protected float acceleration = 5000f;
 
     // local references
-    private Rigidbody2D ourRigidbody;
+    protected Rigidbody2D ourRigidbody;
 
-    void Start()
+    protected virtual void Start()
     {
         // populate ourRigidbody
         ourRigidbody = GetComponent<Rigidbody2D>();
@@ -24,9 +24,12 @@ public class EngineBase : MonoBehaviour
     /// <param name="horizontalInput">A direction vector, expected to be a unit vector (magnitude of 1).</param>
     public void Accelerate(Vector2 direction)
     {
-        //calculate our force to add
-        Vector2 forceToAdd = direction * acceleration * Time.deltaTime;
-        // apply forceToAdd to ourRigidbody
-        ourRigidbody.AddForce(forceToAdd);
+        if (direction.magnitude != 0)
+        {
+            //calculate our force to add
+            Vector2 forceToAdd = direction.normalized * acceleration * Time.deltaTime;
+            // apply forceToAdd to ourRigidbody
+            ourRigidbody.AddForce(forceToAdd);
+        }
     }
 }
