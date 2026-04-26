@@ -5,8 +5,8 @@ using UnityEngine;
 /// <summary>
 /// IHealth defines how to speak to any Health component
 /// </summary>
-public interface IHealth
-{
+public interface IHealth {
+    
     // get the amount of health this health component currently has
     int CurrentHealth { get; }
     // get the maximum health of this health component

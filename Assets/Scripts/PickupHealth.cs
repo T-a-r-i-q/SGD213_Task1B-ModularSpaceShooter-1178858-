@@ -6,8 +6,8 @@ using UnityEngine;
 /// PickupHealth is a concrete implementation of PickupBase that provides health restoration functionality to the 
 /// player. 
 /// </summary>
-public class PickupHealth : PickupBase
-{
+public class PickupHealth : PickupBase {
+
     // healingAmount is the amount of health that will be restored to the player upon picking up this item.
     [SerializeField]
     public int healingAmount;
@@ -17,13 +17,14 @@ public class PickupHealth : PickupBase
     /// that component with the specified healingAmount. If the player does not have an IHealth component, it logs 
     /// an error and returns false, indicating that the pickup was not successful.
     /// </summary>
-    /// <param name="player"></param>
-    protected override bool HandlePlayerPickup(GameObject player)
-    {
+    /// <param name="player"> The player GameObject that picked up the item </param>
+    protected override bool HandlePlayerPickup(GameObject player) {
+
+        // Attempt to get the IHealth component from the player GameObject.
         IHealth playerHealth = player.GetComponent<IHealth>();
 
-        if (playerHealth == null)
-        {
+        if (playerHealth == null) {
+            
             Debug.LogError("Player doesn't have an IHealth component.");
             return false;
         }

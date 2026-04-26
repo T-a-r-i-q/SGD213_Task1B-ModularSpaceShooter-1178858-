@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-/*
-This script is attached to the spawner game object. It spawns a given object at random positions 
-within the bounds of the spawner, and it does this repeatedly over time.
-*/
-public class SpawnOverTimeScript : MonoBehaviour
-{
+/// <summary>
+/// This script is responsible for spawning a specified object at random positions within the bounds of the spawner,
+/// at regular intervals defined by 'spawnDelay'. The spawner itself is invisible, and the spawned objects appear 
+/// at the spawner's position with a random horizontal offset.
+/// </summary>
+public class SpawnOverTimeScript : MonoBehaviour {
 
     // Object to spawn
     [SerializeField]
@@ -23,8 +23,7 @@ public class SpawnOverTimeScript : MonoBehaviour
     private Renderer ourRenderer;
 
     // Use this for initialization
-    void Start()
-    {
+    void Start() {
 
         ourRenderer = GetComponent<Renderer>();
 
@@ -39,8 +38,8 @@ public class SpawnOverTimeScript : MonoBehaviour
     }
 
     // This function is responsible for spawning the object at random positions within the bounds of the spawner.
-    void Spawn()
-    {
+    void Spawn() {
+        
         float x1 = transform.position.x - ourRenderer.bounds.size.x / 2;
         float x2 = transform.position.x + ourRenderer.bounds.size.x / 2;
 

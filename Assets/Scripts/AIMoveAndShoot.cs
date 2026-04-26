@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This is a simple AI script that moves the enemy in a random direction downwards and shoots at the player. 
+/// It requires an EngineMovement component to move and a WeaponBase component to shoot.
+/// </summary>
 public class AIMoveAndShoot : MonoBehaviour {
 
     // state
@@ -11,6 +15,7 @@ public class AIMoveAndShoot : MonoBehaviour {
     private EngineMovement enemyMovement;
     private WeaponBase weapon;
 
+    // Use this for initialization
     void Start() {
         // populate our local references
         enemyMovement = GetComponent<EngineMovement>();

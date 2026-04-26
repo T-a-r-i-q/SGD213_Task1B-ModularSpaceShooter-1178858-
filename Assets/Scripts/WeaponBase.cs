@@ -2,17 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class WeaponBase : MonoBehaviour
-{
+/// <summary>
+/// WeaponBase is the base class for all weapons in the game. It contains the basic controls and references that 
+/// all weapons will need, as well as the Shoot method that all weapons will implement.
+/// </summary>
+public abstract class WeaponBase : MonoBehaviour {
 
+    // Controls and References
     [Header("Controls")]
     [SerializeField]
     protected float fireDelay = 1f;
 
     [SerializeField]
     protected GameObject bullet;
-    public GameObject Bullet
-    {
+    public GameObject Bullet {
+
         get { return bullet; }
         set { bullet = value; }
     }
@@ -20,8 +24,8 @@ public abstract class WeaponBase : MonoBehaviour
     [Header("References")]
     [SerializeField]
     protected Transform bulletSpawnPoint;
-    public Transform BulletSpawnPoint
-    {
+    public Transform BulletSpawnPoint {
+
         get { return bulletSpawnPoint; }
         set { bulletSpawnPoint = value; }
     }
@@ -30,8 +34,8 @@ public abstract class WeaponBase : MonoBehaviour
     protected float lastFiredTime = 0f;
 
     /// <summary>
-    /// Shoot is intended to be the access point for shooting mechanics. In concrete implementations it is intended that it 
-    /// should only fire when enough time has passed compared to our fireDelay.
+    /// Shoot is intended to be the access point for shooting mechanics. In concrete implementations it is intended 
+    /// that it should only fire when enough time has passed compared to our fireDelay.
     /// </summary>
     public abstract void Shoot();
 
@@ -40,8 +44,8 @@ public abstract class WeaponBase : MonoBehaviour
     /// those of the given WeaponBase
     /// </summary>
     /// <param name="oldWeapon">The existing weapon that will be used to grab WeaponBase controls from</param>
-    public virtual void UpdateWeaponControls(WeaponBase oldWeapon)
-    {
+    public virtual void UpdateWeaponControls(WeaponBase oldWeapon) {
+        
         // update the data of the new weapon with the data from this weapon
         bulletSpawnPoint = oldWeapon.BulletSpawnPoint;
         bullet = oldWeapon.Bullet;

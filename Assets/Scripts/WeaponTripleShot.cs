@@ -15,20 +15,20 @@ public class WeaponTripleShot : WeaponBase {
 
 
     // Override the Shoot method to implement the triple shot behavior.
-    public override void Shoot() 
-    {
+    public override void Shoot() {
+
         // get the current time
         float currentTime = Time.time;
 
         print("Shoot triple shot");
         // if enough time has passed since our last shot compared to our fireDelay, spawn our bullet
-        if (currentTime - lastFiredTime > fireDelay) 
-        {
+        if (currentTime - lastFiredTime > fireDelay) {
+
             float[] angles = { -spreadAngle, 0f, spreadAngle };
 
             // create 3 bullets
-            for (int i = 0; i < 3; i++) 
-            {
+            for (int i = 0; i < 3; i++) {
+
                 // create our bullet with the same rotation as the weapon
                 GameObject newBullet = Instantiate(
                     bullet,
@@ -43,8 +43,7 @@ public class WeaponTripleShot : WeaponBase {
                 Vector2 baseDirection = moveScript.Direction;
 
                 // Apply spread rotation
-                Vector2 finalDirection =
-                    Quaternion.Euler(0, 0, angles[i]) * baseDirection;
+                Vector2 finalDirection = Quaternion.Euler(0, 0, angles[i]) * baseDirection;
 
                 // Set the final direction to the MoveConstantly script
                 moveScript.Direction = finalDirection;

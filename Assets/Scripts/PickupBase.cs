@@ -5,16 +5,16 @@ using UnityEngine;
 /// It handles the common functionality of detecting player collisions and delegating the specific pickup logic 
 /// to derived classes through the HandlePlayerPickup method.
 /// </summary>
-public abstract class PickupBase : MonoBehaviour
-{
+public abstract class PickupBase : MonoBehaviour {
+
     // OnTriggerEnter2D and OnCollisionEnter2D both call TryPickup to handle player interactions with the pickup.
-    private void OnTriggerEnter2D(Collider2D col)
-    {
+    private void OnTriggerEnter2D(Collider2D col) {
+
         TryPickup(col.gameObject);
     }
 
-    private void OnCollisionEnter2D(Collision2D col)
-    {
+    private void OnCollisionEnter2D(Collision2D col) {
+
         TryPickup(col.gameObject);
     }
 
@@ -23,18 +23,18 @@ public abstract class PickupBase : MonoBehaviour
     /// method. If the pickup is successful, it destroys the pickup game object. This method centralizes the logic 
     /// for handling player pickups.
     /// </summary>
-    /// <param name="other"></param>
-    private void TryPickup(GameObject other)
-    {
-        if (!other.CompareTag("Player"))
-        {
+    /// <param name="other"> The GameObject that triggered the pickup </param>
+    private void TryPickup(GameObject other) {
+
+        if (!other.CompareTag("Player")) {
+
             return;
         }
 
         bool pickupSuccessful = HandlePlayerPickup(other);
 
-        if (pickupSuccessful)
-        {
+        if (pickupSuccessful) {
+            
             Destroy(gameObject);
         }
     }
@@ -43,7 +43,7 @@ public abstract class PickupBase : MonoBehaviour
     /// HandlePlayerPickup is an abstract method that must be implemented by derived classes to define the specific 
     /// logic for each pickup type.
     /// </summary>
-    /// <param name="player"></param>
+    /// <param name="player"> The player GameObject that picked up the item </param>
     /// <returns></returns>
     protected abstract bool HandlePlayerPickup(GameObject player);
 }
